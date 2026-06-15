@@ -3,9 +3,15 @@
     <span class="navbar-brand mb-0 h1">
       <i class="bi bi-shop"></i> Feiras &middot; UNIFOR
     </span>
-    <a routerLink="/feiras" routerLinkActive="active" class="btn btn-outline-light btn-sm">
-      <i class="bi bi-list-ul"></i> Feiras
-    </a>
+    <div class="d-flex gap-2">
+      <a routerLink="/feiras" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+         class="btn btn-outline-light btn-sm">
+        <i class="bi bi-list-ul"></i> Feiras
+      </a>
+      <a routerLink="/feiras/nova" routerLinkActive="active" class="btn btn-outline-light btn-sm">
+        <i class="bi bi-plus-lg"></i> Nova feira
+      </a>
+    </div>
   </div>
 </nav>
 

@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="h4 mb-0">Nova feira</h2>
+  <a routerLink="/feiras" class="btn btn-outline-secondary btn-sm">
+    <i class="bi bi-arrow-left"></i> Voltar
+  </a>
+</div>
+
+@if (sucesso()) {
+  <div class="alert alert-success">{{ sucesso() }}</div>
+}
+@if (erroGeral()) {
+  <div class="alert alert-danger">{{ erroGeral() }}</div>
+}
+
+<form (ngSubmit)="salvar()" class="card">
+  <div class="card-body">
+    <div class="mb-3">
+      <label class="form-label" for="nome">Nome</label>
+      <input id="nome" name="nome" class="form-control"
+             [class.is-invalid]="errosCampos()['nome']" [(ngModel)]="feira.nome" />
+      @if (errosCampos()['nome']) {
+        <div class="invalid-feedback">{{ errosCampos()['nome'] }}</div>
+      }
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="logradouro">Logradouro</label>
+        <input id="logradouro" name="logradouro" class="form-control"
+               [class.is-invalid]="errosCampos()['logradouro']" [(ngModel)]="feira.logradouro" />
+        @if (errosCampos()['logradouro']) {
+          <div class="invalid-feedback">{{ errosCampos()['logradouro'] }}</div>
+        }
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label" for="bairro">Bairro</label>
+        <input id="bairro" name="bairro" class="form-control"
+               [class.is-invalid]="errosCampos()['bairro']" [(ngModel)]="feira.bairro" />
+        @if (errosCampos()['bairro']) {
+          <div class="invalid-feedback">{{ errosCampos()['bairro'] }}</div>
+        }
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="tipo">Tipo</label>
+      <select id="tipo" name="tipo" class="form-select"
+              [class.is-invalid]="errosCampos()['tipoId']" [(ngModel)]="feira.tipoId">
+        <option value="">Selecione um tipo...</option>
+        @for (t of tipos(); track t.id) {
+          <option [value]="t.id">{{ t.nome }}</option>
+        }
+      </select>
+      @if (errosCampos()['tipoId']) {
+        <div class="invalid-feedback">{{ errosCampos()['tipoId'] }}</div>
+      }
+    </div>
+
+    <div class="form-check mb-3">
+      <input id="ativa" name="ativa" type="checkbox" class="form-check-input" [(ngModel)]="feira.ativa" />
+      <label class="form-check-label" for="ativa">Feira ativa</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="salvando()">
+      <i class="bi bi-check-lg"></i> Cadastrar
+    </button>
+  </div>
+</form>
