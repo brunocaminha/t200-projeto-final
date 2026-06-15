@@ -1,0 +1,24 @@
+/* Tema UNIFOR aplicado sobre o Bootstrap (vendorizado em node_modules). */
+:root {
+  --unifor-blue: #044cf4;
+  --unifor-blue-dark: #033ab5;
+  --bs-primary: #044cf4;
+  --bs-primary-rgb: 4, 76, 244;
+  --bs-link-color: #044cf4;
+  --bs-link-hover-color: #033ab5;
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--unifor-blue);
+  --bs-btn-border-color: var(--unifor-blue);
+  --bs-btn-hover-bg: var(--unifor-blue-dark);
+  --bs-btn-hover-border-color: var(--unifor-blue-dark);
+}
+
+.navbar-unifor {
+  background-color: var(--unifor-blue);
+}
