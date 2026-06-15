@@ -16,7 +16,7 @@ Disciplina: Projeto e Arquitetura de Sistemas (UNIFOR). Domínio do grupo: **Fei
 
 ## Requisitos
 
-- **Java 17+** e **Maven 3.9+** (backend)
+- **Java 17+** (backend — o Maven é baixado automaticamente pelo wrapper `./mvnw`)
 - **Node 20.19+** (testado com Node 24) e **Angular CLI 22** (frontend)
 
 ## Como rodar
@@ -25,7 +25,7 @@ Disciplina: Projeto e Arquitetura de Sistemas (UNIFOR). Domínio do grupo: **Fei
 
 ```bash
 cd backend/feira-tipo-api
-mvn spring-boot:run
+./mvnw spring-boot:run     # no Windows: mvnw.cmd spring-boot:run
 ```
 
 - API: <http://localhost:8080/api>
