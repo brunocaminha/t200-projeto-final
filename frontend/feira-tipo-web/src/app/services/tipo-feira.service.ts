@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { TipoFeira } from '../models';
+import { TipoFeira, TipoFeiraRequest } from '../models';
 
-/** Consome os endpoints REST de tipos de feira (usado para popular o combo). */
+/** Consome os endpoints REST de tipos de feira. */
 @Injectable({ providedIn: 'root' })
 export class TipoFeiraService {
 
@@ -14,5 +14,13 @@ export class TipoFeiraService {
 
   listar(): Observable<TipoFeira[]> {
     return this.http.get<TipoFeira[]>(this.apiUrl);
+  }
+
+  salvar(tipo: TipoFeiraRequest): Observable<TipoFeira> {
+    return this.http.post<TipoFeira>(this.apiUrl, tipo);
+  }
+
+  remover(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

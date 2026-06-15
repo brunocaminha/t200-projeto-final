@@ -22,3 +22,8 @@ export interface FeiraRequest {
   ativa: boolean;
   tipoId: string;
 }
+
+/** Corpo enviado ao cadastrar um tipo de feira. */
+export interface TipoFeiraRequest {
+  nome: string;
+}

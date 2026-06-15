@@ -1,0 +1,41 @@
+<h2 class="h4 mb-3">Tipos de feira</h2>
+
+@if (sucesso()) {
+  <div class="alert alert-success">{{ sucesso() }}</div>
+}
+@if (erro()) {
+  <div class="alert alert-danger">{{ erro() }}</div>
+}
+
+<form (ngSubmit)="cadastrar()" class="card mb-4">
+  <div class="card-body">
+    <label class="form-label" for="novoNome">Novo tipo</label>
+    <div class="input-group">
+      <input id="novoNome" name="novoNome" class="form-control"
+             [class.is-invalid]="erroNome()" placeholder="Ex.: Orgânica" [(ngModel)]="novo.nome" />
+      <button type="submit" class="btn btn-primary" [disabled]="salvando()">
+        <i class="bi bi-plus-lg"></i> Cadastrar
+      </button>
+    </div>
+    @if (erroNome()) {
+      <div class="text-danger small mt-1">{{ erroNome() }}</div>
+    }
+  </div>
+</form>
+
+@if (carregando()) {
+  <p class="text-muted">Carregando...</p>
+} @else if (tipos().length === 0) {
+  <div class="alert alert-info mb-0">Nenhum tipo cadastrado ainda.</div>
+} @else {
+  <ul class="list-group">
+    @for (t of tipos(); track t.id) {
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ t.nome }}
+        <button class="btn btn-sm btn-outline-danger" (click)="remover(t)">
+          <i class="bi bi-trash"></i> Remover
+        </button>
+      </li>
+    }
+  </ul>
+}
