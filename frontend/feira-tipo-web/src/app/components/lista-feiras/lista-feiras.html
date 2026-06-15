@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="h4 mb-0">Feiras</h2>
+  <a routerLink="/feiras/nova" class="btn btn-primary btn-sm">
+    <i class="bi bi-plus-lg"></i> Nova feira
+  </a>
+</div>
+
+@if (erro()) {
+  <div class="alert alert-danger">{{ erro() }}</div>
+}
+
+@if (carregando()) {
+  <p class="text-muted">Carregando...</p>
+} @else if (feiras().length === 0) {
+  <div class="alert alert-info mb-0">Nenhuma feira cadastrada ainda.</div>
+} @else {
+  <div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Logradouro</th>
+          <th>Bairro</th>
+          <th>Ativa</th>
+          <th>Tipo</th>
+          <th class="text-end">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (f of feiras(); track f.id) {
+          <tr>
+            <td>{{ f.nome }}</td>
+            <td>{{ f.logradouro }}</td>
+            <td>{{ f.bairro }}</td>
+            <td>
+              @if (f.ativa) {
+                <span class="badge text-bg-success">Ativa</span>
+              } @else {
+                <span class="badge text-bg-secondary">Inativa</span>
+              }
+            </td>
+            <td>{{ f.tipoNome }}</td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-danger" (click)="remover(f)">
+                <i class="bi bi-trash"></i> Remover
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
